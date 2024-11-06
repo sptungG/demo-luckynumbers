@@ -1,6 +1,6 @@
 # Farm + React
 
-customer yêu cầu trang web quay số random. tổng cộng có 1500 user tương ứng với 1500 con số. 
+yêu cầu trang web quay số random. tổng cộng có 1500 user tương ứng với 1500 con số. 
 
 một lần quay là quay ra 10 số, sau đó sẽ check xem 10 con 
 
