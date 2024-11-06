@@ -1,9 +1,15 @@
 import { defineConfig } from "@farmfe/core";
 import farmPluginPostcss from "@farmfe/js-plugin-postcss";
+import farmJsPluginSvgr from "@farmfe/js-plugin-svgr";
 
 export default defineConfig({
-  plugins: ["@farmfe/plugin-react", farmPluginPostcss()],
+  compilation: {
+    persistentCache: true,
+    minify: true,
+    treeShaking: true,
+  },
+  plugins: ["@farmfe/plugin-react", farmJsPluginSvgr({ svgrOptions: { icon: true, dimensions: false, svgo: true } }), farmPluginPostcss()],
   server: {
-    port: 11101,
+    port: +(process.env.FARM_PORT || 3000),
   },
 });
