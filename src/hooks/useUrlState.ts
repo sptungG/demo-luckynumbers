@@ -49,23 +49,26 @@ export const useUrlState = <S extends UrlState = UrlState>(initialState?: S | ((
     [queryFromUrl]
   );
 
-  const setState = (s: React.SetStateAction<State>) => {
-    const newQuery = typeof s === "function" ? s(targetQuery) : s;
+  const setState = useCallback(
+    (s: React.SetStateAction<State>) => {
+      const newQuery = typeof s === "function" ? s(targetQuery) : s;
 
-    update({});
-    if (navigate) {
-      navigate(
-        {
-          hash: location.hash,
-          search: qs.stringify({ ...queryFromUrl, ...newQuery }, mergedStringifyOptions) || "?",
-        },
-        {
-          replace: navigateMode === "replace",
-          state: location.state,
-        }
-      );
-    }
-  };
+      update({});
+      if (navigate) {
+        navigate(
+          {
+            hash: location.hash,
+            search: qs.stringify({ ...queryFromUrl, ...newQuery }, mergedStringifyOptions) || "?",
+          },
+          {
+            replace: navigateMode === "replace",
+            state: location.state,
+          }
+        );
+      }
+    },
+    [location.hash, location.state, navigate, navigateMode, queryFromUrl, targetQuery]
+  );
 
-  return [targetQuery, useCallback(setState, [])] as const;
+  return [targetQuery, setState] as const;
 };
