@@ -1,8 +1,8 @@
 # Farm + React
 
-yêu cầu trang web quay số random. tổng cộng có 1500 user tương ứng với 1500 con số. 
+yêu cầu trang web quay số random. tổng cộng có 1500 user tương ứng với 1500 con số.
 
-một lần quay là quay ra 10 số, sau đó sẽ check xem 10 con 
+một lần quay là quay ra 10 số, sau đó sẽ check xem 10 con
 
 số vừa quay được là của người nào thì người đó sẽ trúng giải
 
@@ -15,6 +15,8 @@ ví dụ 100 giải nhất trị giá 500k.
 và 300 giải thưởng 50k
 
 ## Setup
+
+### PNPM
 
 Install the dependencies:
 
