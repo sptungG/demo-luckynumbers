@@ -21,12 +21,22 @@ const baseStringifyConfig: StringifyOptions = {
 
 type UrlState = Record<string, any>;
 
-export const useUrlState = <S extends UrlState = UrlState>(initialState?: S | (() => S), options?: Options) => {
+export const useUrlState = <S extends UrlState = UrlState>(
+  initialState?: S | (() => S),
+  options?: Options
+) => {
   type State = Partial<{ [key in keyof S]: any }>;
-  const { navigateMode = "push", parseOptions, stringifyOptions } = options || {};
+  const {
+    navigateMode = "push",
+    parseOptions,
+    stringifyOptions,
+  } = options || {};
 
   const mergedParseOptions = { ...baseParseConfig, ...parseOptions };
-  const mergedStringifyOptions = { ...baseStringifyConfig, ...stringifyOptions };
+  const mergedStringifyOptions = {
+    ...baseStringifyConfig,
+    ...stringifyOptions,
+  };
 
   const location = useLocation();
 
@@ -35,7 +45,11 @@ export const useUrlState = <S extends UrlState = UrlState>(initialState?: S | ((
 
   const [, update] = useState({});
 
-  const initialStateRef = useRef(typeof initialState === "function" ? (initialState as () => S)() : initialState || {});
+  const initialStateRef = useRef(
+    typeof initialState === "function"
+      ? (initialState as () => S)()
+      : initialState || {}
+  );
 
   const queryFromUrl = useMemo(() => {
     return qs.parse(location.search, mergedParseOptions);
@@ -58,7 +72,11 @@ export const useUrlState = <S extends UrlState = UrlState>(initialState?: S | ((
         navigate(
           {
             hash: location.hash,
-            search: qs.stringify({ ...queryFromUrl, ...newQuery }, mergedStringifyOptions) || "?",
+            search:
+              qs.stringify(
+                { ...queryFromUrl, ...newQuery },
+                mergedStringifyOptions
+              ) || "?",
           },
           {
             replace: navigateMode === "replace",
@@ -67,7 +85,14 @@ export const useUrlState = <S extends UrlState = UrlState>(initialState?: S | ((
         );
       }
     },
-    [location.hash, location.state, navigate, navigateMode, queryFromUrl, targetQuery]
+    [
+      location.hash,
+      location.state,
+      navigate,
+      navigateMode,
+      queryFromUrl,
+      targetQuery,
+    ]
   );
 
   return [targetQuery, setState] as const;

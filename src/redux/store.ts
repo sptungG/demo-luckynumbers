@@ -12,7 +12,15 @@ const reducers = combineReducers({
   numbers: numbersReducer,
 });
 
-const persistedReducer = persistReducer({ key: "root", version: 1, storage: storage, whitelist: ["config", "numbers"] }, reducers);
+const persistedReducer = persistReducer(
+  {
+    key: "root",
+    version: 1,
+    storage,
+    whitelist: ["config", "numbers"],
+  },
+  reducers
+);
 
 const store = configureStore({
   reducer: persistedReducer,
