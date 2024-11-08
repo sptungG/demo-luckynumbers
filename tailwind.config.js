@@ -11,8 +11,14 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        bronze: {
+          400: "#CD7F32",
+        },
+      },
       animation: {
         aurora: "aurora 60s linear infinite",
+        "gradient-x": "gradient-x 15s ease infinite",
       },
       keyframes: {
         aurora: {
@@ -21,6 +27,14 @@ module.exports = {
           },
           to: {
             backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
+        "gradient-x": {
+          "0%, 100%": {
+            "background-position": "0% 50%",
+          },
+          "50%": {
+            "background-position": "100% 50%",
           },
         },
       },
