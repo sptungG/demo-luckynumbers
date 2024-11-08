@@ -116,6 +116,7 @@ const PrizeConfigScreen = () => {
                   initial='initial'
                   animate='animate'
                   transition={{ delay: index * 0.1 }}
+                  className={index === 0 ? 'mb-10' : ''}
                 >
                   {/* <label className="text-white/80 mb-2 text-lg flex items-center">
                       {icons[index]}
