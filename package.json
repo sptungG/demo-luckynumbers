@@ -1,7 +1,6 @@
 {
   "name": "demo-luckynumbers",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "dev": "farm start",
     "start": "farm start",
