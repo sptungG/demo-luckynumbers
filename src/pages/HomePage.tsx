@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   UserIcon,
@@ -6,6 +7,7 @@ import {
   TrophyIcon,
   SparklesIcon,
 } from "@heroicons/react/24/solid";
+import { uid } from "../utils/random";
 
 const PrizeConfigScreen = () => {
   const [setUp, setSetUp] = useState({});
@@ -104,10 +106,22 @@ const PrizeConfigScreen = () => {
             {["participants", "firstPrize", "secondPrize", "thirdPrize"].map(
               (field, index) => {
                 const icons = [
-                  <UserIcon className="w-5 h-5 mr-2 text-[#2575fc]" />,
-                  <TrophyIcon className="w-5 h-5 mr-2 text-yellow-400" />,
-                  <GiftIcon className="w-5 h-5 mr-2 text-green-400" />,
-                  <GiftIcon className="w-5 h-5 mr-2 text-bronze-400" />,
+                  <UserIcon
+                    key={uid()}
+                    className="w-5 h-5 mr-2 text-[#2575fc]"
+                  />,
+                  <TrophyIcon
+                    key={uid()}
+                    className="w-5 h-5 mr-2 text-yellow-400"
+                  />,
+                  <GiftIcon
+                    key={uid()}
+                    className="w-5 h-5 mr-2 text-green-400"
+                  />,
+                  <GiftIcon
+                    key={uid()}
+                    className="w-5 h-5 mr-2 text-bronze-400"
+                  />,
                 ];
                 const labels = [
                   "Number of Participants",
