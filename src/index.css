@@ -31,3 +31,25 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background: linear-gradient(90deg, #8e44ad, #e74c3c, #f39c12, #1abc9c);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientAnimation 3s ease infinite;
+}

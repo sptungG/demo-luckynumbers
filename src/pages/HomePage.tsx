@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { setParticipantsCount } from "../redux/reducers/config-reducer";
 import { useEffect, useState } from "react";
+import { BackgroundBeamsWithCollision } from "../components/Background";
 
 const HomePage = () => {
   const configState = useAppSelector((s) => s.config);
@@ -12,18 +13,12 @@ const HomePage = () => {
   }, [count]);
 
   return (
-    <div className="flex flex-col justify-start items-start">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        Add Participants
-      </button>
-      <pre>{JSON.stringify(configState, null, 2)}</pre>
-    </div>
+    <BackgroundBeamsWithCollision>
+      <div className="text-2xl z-20 md:text-4xl lg:text-7xl font-bold bg-clip-text bg-no-repeat text-transparent py-4 animate-gradient">
+        <span>Vui lòng nhập thông tin vòng quay</span>
+      </div>
+      <div>Nhap số</div>
+    </BackgroundBeamsWithCollision>
   );
 };
 
