@@ -1,6 +1,6 @@
-"use client";
-import React, { ReactNode } from "react";
-import { cn } from "../../common/utils";
+'use client';
+import React, { ReactNode } from 'react';
+import { cn } from '../../common/utils';
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
@@ -17,12 +17,12 @@ export const BgCustomize = ({
     <main>
       <div
         className={cn(
-          "relative flex flex-col h-[100vh] items-center pt-40 bg-gradient-to-b from-blue-200 to-green-200 dark:from-blue-900 dark:to-green-800 text-slate-950 transition-bg",
-          className
+          'relative flex flex-col h-[100vh] items-center pt-40 bg-gradient-to-b from-blue-200 to-green-200 dark:from-blue-900 dark:to-green-800 text-slate-950 transition-bg',
+          className,
         )}
         {...props}
       >
-        <div className="absolute inset-0 overflow-hidden">
+        <div className='absolute inset-0 overflow-hidden'>
           <div
             className={cn(
               `
@@ -43,7 +43,7 @@ export const BgCustomize = ({
               transition-all duration-500 ease-in-out`,
 
               showRadialGradient &&
-                `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+                `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`,
             )}
           ></div>
         </div>
