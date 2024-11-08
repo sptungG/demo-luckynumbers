@@ -32,7 +32,6 @@ body {
 @tailwind components;
 @tailwind utilities;
 
-
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -52,4 +51,10 @@ body {
   background-clip: text;
   color: transparent;
   animation: gradientAnimation 3s ease infinite;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
