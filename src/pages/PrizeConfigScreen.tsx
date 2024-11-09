@@ -3,9 +3,23 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { UserIcon, GiftIcon, TrophyIcon, SparklesIcon } from '@heroicons/react/24/solid';
 import { uid } from '../utils/random';
+import RandomDrawerScreen from './RandomDrawerScreen';
+
+interface IFormInput {
+  participants: number;
+  firstPrize: number;
+  secondPrize: number;
+  thirdPrize: number;
+}
 
 const PrizeConfigScreen = () => {
-  const [setUp, setSetUp] = useState({});
+  const [setUp, setSetUp] = useState<IFormInput>({
+    participants: 0,
+    firstPrize: 0,
+    secondPrize: 0,
+    thirdPrize: 0,
+  });
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const inputVariants = {
     initial: {
@@ -29,6 +43,7 @@ const PrizeConfigScreen = () => {
   };
 
   const handleOnSubmit = () => {
+    setIsDrawerOpen(true);
     console.log('🚀 ~ PrizeConfigScreen ~ setUp:', setUp);
   };
 
@@ -127,7 +142,7 @@ const PrizeConfigScreen = () => {
                       type='number'
                       onChange={handleInputChange}
                       name={field}
-                      className='w-full pl-10 pr-4 py-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-[#2575fc]/50 transition-all duration-300 placeholder-white/60'
+                      className='w-full pl-10 pr-4 py-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 text-white focus:outline-none transition-all duration-300 placeholder-white/60'
                       placeholder={placeholders[index]}
                     />
                     <div className='absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50'>
@@ -156,6 +171,11 @@ const PrizeConfigScreen = () => {
           </div>
         </motion.div>
       </div>
+      <RandomDrawerScreen
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        participants={setUp.participants || 100}
+      />
     </div>
   );
 };

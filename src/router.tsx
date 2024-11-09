@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Providers from './components/providers/Providers';
 
-import HomePage from './pages/HomePage';
+import PrizeConfigScreen from './pages/PrizeConfigScreen';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <PrizeConfigScreen />,
   },
 ]);
 
