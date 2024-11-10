@@ -31,3 +31,24 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .inset-center {
+    @apply top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+  }
+  .inset-center-y {
+    @apply top-1/2 -translate-y-1/2;
+  }
+  .inset-center-x {
+    @apply left-1/2 -translate-x-1/2;
+  }
+}
+
+@layer base {
+  :root {
+    --primary: 38 92% 50%;
+  }
+}

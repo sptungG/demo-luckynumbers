@@ -4,9 +4,8 @@ import farmJsPluginSvgr from "@farmfe/js-plugin-svgr";
 
 export default defineConfig({
   compilation: {
-    persistentCache: true,
-    minify: true,
-    treeShaking: true,
+    persistentCache: process.env.NODE_ENV === "production",
+    minify: process.env.NODE_ENV === "production",
   },
   plugins: ["@farmfe/plugin-react", farmJsPluginSvgr({ svgrOptions: { icon: true, dimensions: false, svgo: true } }), farmPluginPostcss()],
   server: {
