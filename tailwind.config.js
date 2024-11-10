@@ -1,54 +1,45 @@
-const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    // your paths
-    './src/**/*.{ts,tsx}',
-  ],
-  darkMode: 'class',
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {
-        bronze: {
-          400: '#CD7F32',
-        },
-      },
       animation: {
-        aurora: 'aurora 60s linear infinite',
-        'gradient-x': 'gradient-x 15s ease infinite',
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
       keyframes: {
-        aurora: {
-          from: {
-            backgroundPosition: '50% 50%, 50% 50%',
-          },
-          to: {
-            backgroundPosition: '350% 50%, 350% 50%',
-          },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
         },
-        'gradient-x': {
-          '0%, 100%': {
-            'background-position': '0% 50%',
-          },
-          '50%': {
-            'background-position': '100% 50%',
-          },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
         },
       },
     },
   },
+  darkMode: "class",
   plugins: [addVariablesForColors],
 };
 
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }) {
-  let allColors = flattenColorPalette(theme('colors'));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
+function flattenColorPalette(colors) {
+  return Object.assign(
+    {},
+    ...Object.entries(colors !== null && colors !== void 0 ? colors : {}).flatMap(([color, values]) =>
+      typeof values == "object"
+        ? Object.entries(flattenColorPalette(values)).map(([number, hex]) => ({
+            [color + (number === "DEFAULT" ? "" : `-${number}`)]: hex,
+          }))
+        : [{ [`${color}`]: values }]
+    )
   );
+}
 
+function addVariablesForColors({ addBase, theme }) {
+  const allColors = flattenColorPalette(theme("colors"));
+  const newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
   addBase({
-    ':root': newVars,
+    ":root": newVars,
   });
 }

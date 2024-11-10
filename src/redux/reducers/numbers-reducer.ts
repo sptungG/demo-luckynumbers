@@ -1,10 +1,10 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TNumberData } from '../../common/types';
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { TNumberData } from "../../common/types";
 
 const initialState: TNumberData[] = [];
 
 const numbersSlice = createSlice({
-  name: 'numbers',
+  name: "numbers",
   initialState,
   reducers: {
     setNumberPrizeType(state, action: PayloadAction<TNumberData>) {

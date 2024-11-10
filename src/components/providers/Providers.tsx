@@ -1,8 +1,8 @@
-import React from 'react';
-import { LazyMotion, domAnimation } from 'framer-motion';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from '../../redux/store';
+import React from "react";
+import { LazyMotion, domAnimation } from "framer-motion";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "../../redux/store";
 
 type TProvidersProps = { children?: React.ReactNode };
 

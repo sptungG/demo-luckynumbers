@@ -1,10 +1,10 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import configReducer from './reducers/config-reducer';
-import numbersReducer from './reducers/numbers-reducer';
+import configReducer from "./reducers/config-reducer";
+import numbersReducer from "./reducers/numbers-reducer";
 
 const reducers = combineReducers({
   // ** Need to add after creating redux slice
@@ -14,12 +14,12 @@ const reducers = combineReducers({
 
 const persistedReducer = persistReducer(
   {
-    key: 'root',
+    key: "root",
     version: 1,
     storage,
-    whitelist: ['config', 'numbers'],
+    whitelist: ["config", "numbers"],
   },
-  reducers,
+  reducers
 );
 
 const store = configureStore({
