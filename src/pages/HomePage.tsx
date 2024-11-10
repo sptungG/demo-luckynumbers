@@ -120,7 +120,7 @@ const HomePage = () => {
       </div>
 
       <div className="absolute flex h-full w-full overflow-hidden flex-center -z-10">
-        <GamblingChipsSvg className="w-[200%] h-[200%]" />
+        <GamblingChipsSvg className="w-[200%] h-[200%] animate-[bounceY_5s_linear_infinite]" />
       </div>
 
       {/* <div className="absolute inset-0 w-full h-full bg-white z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" /> */}
