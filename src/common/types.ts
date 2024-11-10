@@ -2,7 +2,6 @@ export interface TConfig {
   participantsCount: number;
   prizeConfig: {
     type: string;
-    name: string;
     total: number;
   }[];
 }

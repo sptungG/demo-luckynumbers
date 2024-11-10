@@ -1,23 +1,25 @@
 import { useId, useState } from "react";
 import { Button } from "react-aria-components";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import ParticipantsCountInputForm from "../components/forms/ParticipantsCountInputForm";
 import PrizeConfigCountInputForm from "../components/forms/PrizeConfigCountInputForm";
 import RandomNumberMarquee from "../components/list/RandomNumberMarquee";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import ShinyButton from "../components/button/ShinyButton";
-
+import { cn } from "../common/utils";
+import { setParticipantsCount, setPrizeConfig } from "../redux/reducers/config-reducer";
 import GamblingChipsSvg from "../assets/gambling-chips.svg";
 import SlotMachineSvg from "../assets/slot-machine.svg";
 import Prize01Svg from "../assets/prize-01.svg";
 import Prize02Svg from "../assets/prize-02.svg";
 import Prize03Svg from "../assets/prize-03.svg";
-import { cn } from "../common/utils";
 
 const HomePage = () => {
   const uid = useId();
   const configState = useAppSelector((s) => s.config);
-  const [count, setCount] = useState<number>(0);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const formMethods = useForm({
@@ -26,15 +28,15 @@ const HomePage = () => {
       prizeConfig: [
         {
           type: "2ND",
-          count: 50,
+          total: 50,
         },
         {
           type: "1ST",
-          count: 10,
+          total: 10,
         },
         {
           type: "3RD",
-          count: 150,
+          total: 150,
         },
       ],
     },
@@ -45,10 +47,32 @@ const HomePage = () => {
     keyName: "uid",
   });
 
-  const participantsCountWatch = formMethods.watch("participantsCount");
+  // const participantsCountWatch = formMethods.watch("participantsCount");
 
   const handleSubmitForm = formMethods.handleSubmit((formData) => {
-    console.log(formData);
+    try {
+      const mappedPrizeConfig = formData.prizeConfig.sort((a, b) => {
+        if (a.type === "3RD") {
+          return -1;
+        } else if (b.type === "3RD") {
+          return 1;
+        } else if (a.type === "1ST") {
+          return 1;
+        } else if (b.type === "1ST") {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      dispatch(setParticipantsCount(formData.participantsCount));
+      dispatch(setPrizeConfig(mappedPrizeConfig));
+      toast.success(`Let's start the game 🎉`, {
+        duration: 3000,
+      });
+      navigate("/play");
+    } catch (error) {
+      console.log("error:", error);
+    }
   });
 
   return (
@@ -64,16 +88,12 @@ const HomePage = () => {
                   {index === 2 && <Prize03Svg className="size-20" />}
                   <Controller
                     control={formMethods.control}
-                    name={`prizeConfig.${index}.count`}
+                    name={`prizeConfig.${index}.total`}
                     render={({ field }) => (
                       <PrizeConfigCountInputForm
                         value={field.value}
                         onChange={field.onChange}
-                        classNameNumber={cn(
-                          index === 0 && "text-[#CACCCE]",
-                          index === 1 && "text-amber-200",
-                          index === 2 && "text-[#F48634]"
-                        )}
+                        classNameNumber={cn(index === 0 && "text-[#CACCCE]", index === 1 && "text-amber-200", index === 2 && "text-[#F48634]")}
                       />
                     )}
                   />
@@ -103,7 +123,7 @@ const HomePage = () => {
         </div>
       </form>
 
-      <div className="relative flex bottom-0 w-full flex-col items-center justify-end overflow-hidden pb-5 z-0">
+      <div className="relative flex min-h-[164px] w-full flex-col items-center justify-end overflow-hidden pb-5 z-0">
         <div className="absolute bottom-11 inline-flex w-fit flex-col items-center justify-center bg-white rounded-full z-20">
           <Button form={uid + "form"} type="submit" className="">
             <ShinyButton className="group relative font-mono font-[600] inline-flex min-h-24 items-center justify-center text-5xl">
@@ -120,7 +140,7 @@ const HomePage = () => {
       </div>
 
       <div className="absolute flex h-full w-full overflow-hidden flex-center -z-10">
-        <GamblingChipsSvg className="w-[200%] h-[200%]" />
+        <GamblingChipsSvg className="w-[200%] h-[200%] animate-[bounceY_5s_linear_infinite]" />
       </div>
 
       {/* <div className="absolute inset-0 w-full h-full bg-white z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" /> */}
