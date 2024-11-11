@@ -81,9 +81,9 @@ const HomePage = () => {
             return (
               <div key={uid + field.uid + index} className="flex flex-col items-center justify-end w-1/3 min-w-[300px]">
                 <div className="flex flex-col items-center">
-                  {index === 0 && <Prize02Svg className="size-32" />}
-                  {index === 1 && <Prize01Svg className="size-56" />}
-                  {index === 2 && <Prize03Svg className="size-20" />}
+                  {index === 0 && <Prize02Svg className="backdrop-blur-sm rounded-lg size-32" />}
+                  {index === 1 && <Prize01Svg className="backdrop-blur-sm rounded-lg size-56" />}
+                  {index === 2 && <Prize03Svg className="backdrop-blur-sm rounded-lg size-20" />}
                   <Controller
                     control={formMethods.control}
                     name={`prizeConfig.${index}.total`}
@@ -92,6 +92,7 @@ const HomePage = () => {
                         value={field.value}
                         onChange={field.onChange}
                         classNameNumber={cn(index === 0 && "text-[#CACCCE]", index === 1 && "text-amber-200", index === 2 && "text-[#F48634]")}
+                        classNameActions={cn(index === 0 && "text-[#CACCCE]", index === 1 && "text-amber-400", index === 2 && "text-[#F48634]")}
                       />
                     )}
                   />
@@ -112,7 +113,7 @@ const HomePage = () => {
           <Controller
             control={formMethods.control}
             name="participantsCount"
-            render={({ field }) => <ParticipantsCountInputForm value={field.value} onChange={field.onChange} />}
+            render={({ field }) => <ParticipantsCountInputForm value={field.value} onChange={field.onChange} classNameActions="text-amber-600" />}
           />
           <div className="flex items-center -mt-2 gap-1">
             <span className="text-2xl text-amber-600">Người tham gia </span>

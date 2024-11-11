@@ -4,15 +4,15 @@ import { Button, Group, Input, Label, NumberField } from "react-aria-components"
 import { cn } from "../../common/utils";
 import { useState } from "react";
 
-type TPrizeConfigCountInputFormProps = { value?: number; onChange?: (value: number) => void; classNameNumber?: string };
+type TPrizeConfigCountInputFormProps = { value?: number; onChange?: (value: number) => void; classNameNumber?: string; classNameActions?: string };
 
-const PrizeConfigCountInputForm = ({ value, onChange, classNameNumber }: TPrizeConfigCountInputFormProps) => {
+const PrizeConfigCountInputForm = ({ value, onChange, classNameNumber, classNameActions }: TPrizeConfigCountInputFormProps) => {
   const [openEditInput, setOpenEditInput] = useState(false);
   return (
     <NumberField value={value} onChange={onChange} minValue={0} step={10} isWheelDisabled className={cn("inline-flex relative items-center w-fit")}>
       <NumberFlow value={value} className={cn("h-full text-6xl text-center w-full", classNameNumber)} />
 
-      <Group className="flex flex-col absolute -right-10 top-1/2 -translate-y-1/2 translate-x-full">
+      <Group className={cn("flex flex-col absolute -right-10 top-1/2 -translate-y-1/2 translate-x-full", classNameActions)}>
         <Label className="hidden"></Label>
         <Button slot="increment">
           <PlusIcon />
