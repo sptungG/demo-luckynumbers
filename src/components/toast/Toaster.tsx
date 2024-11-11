@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 type ToasterProps = React.ComponentProps<typeof ToastContainer>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  return <ToastContainer theme={"light"} position="top-center" autoClose={3000} {...props} />;
+  return <ToastContainer theme="light" newestOnTop position="top-center" autoClose={3000} {...props} />;
 };
 
 export { Toaster };
