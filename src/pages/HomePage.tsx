@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
 import { Button } from "react-aria-components";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ParticipantsCountInputForm from "../components/forms/ParticipantsCountInputForm";
 import PrizeConfigCountInputForm from "../components/forms/PrizeConfigCountInputForm";
@@ -66,9 +66,7 @@ const HomePage = () => {
       });
       dispatch(setParticipantsCount(formData.participantsCount));
       dispatch(setPrizeConfig(mappedPrizeConfig));
-      toast.success(`Let's start the game 🎉`, {
-        duration: 3000,
-      });
+      toast.success(`Let's start the game 🎉`);
       navigate("/play");
     } catch (error) {
       console.log("error:", error);

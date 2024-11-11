@@ -9,8 +9,8 @@ type TRandomNumberMarqueeProps = { children?: React.ReactNode };
 const RandomNumberMarquee = ({ children }: TRandomNumberMarqueeProps) => {
   const uid = useId();
 
-  const [list01, setList01] = useState<number[]>();
-  const [list02, setList02] = useState<number[]>();
+  const [list01, setList01] = useState<number[]>(getRandoms(range(0, 500), 20));
+  const [list02, setList02] = useState<number[]>(getRandoms(range(500, 1000), 20));
   useInterval(() => {
     setList01(getRandoms(range(0, 500), 20));
     setList02(getRandoms(range(500, 1000), 20));
