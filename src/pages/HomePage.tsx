@@ -123,8 +123,8 @@ const HomePage = () => {
       </form>
 
       <div className="relative flex min-h-[164px] w-full flex-col items-center justify-end overflow-hidden pb-5 z-0">
-        <div className="absolute bottom-11 inline-flex w-fit flex-col items-center justify-center bg-white rounded-full z-20">
-          <Button form={uid + "form"} type="submit" className="">
+        <div className="absolute bottom-11 flex w-fit flex-col items-center justify-center z-20">
+          <Button form={uid + "form"} type="submit" className="bg-white rounded-full">
             <ShinyButton className="group relative font-mono font-[600] inline-flex min-h-24 items-center justify-center text-5xl">
               <div className="flex-center">
                 <div className="text-white leading-[2] -mb-2 mr-5 uppercase">Bắt đầu ngay</div>
